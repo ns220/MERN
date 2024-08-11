@@ -1,0 +1,81 @@
+3(A)
+
+const express = require('express'); 
+
+const app = express(); 
+
+const port = 3000; 
+
+app.use((req, res, next) => { 
+
+const cookies = req.headers.cookie; 
+
+if (cookies) { 
+req.parsedCookies = parseCookies(cookies); 
+} else { 
+req.parsedCookies = {}; 
+} 
+
+next(); 
+}); 
+
+function parseCookies(cookies) { 
+const parsedCookies = {}; 
+
+cookies.split(';').forEach(cookie => { 
+const parts = cookie.split('='); 
+
+parsedCookies[parts[0].trim()] = (parts[1] || '').trim(); 
+}); 
+
+return parsedCookies; 
+} 
+
+app.get('/', (req, res) => { 
+
+res.send(`Cookies: ${JSON.stringify(req.parsedCookies)}`); 
+}); 
+
+app.listen(port, () => { 
+console.log(`Server is running on http:
+});
+
+
+3(B)
+
+
+const car = { 
+make: 'Toyota', 
+model: 'Camry', 
+year: 2020, 
+color: 'Blue' 
+}; 
+
+function printCarProperties(car) { 
+
+console.log('Car properties:'); 
+for (const key in car) { 
+console.log(`${key}: ${car[key]}`); 
+} 
+} 
+
+function deleteSecondProperty(car) { 
+const keys = Object.keys(car); 
+if (keys.length > 1) { 
+delete car[keys[1]]; 
+} 
+} 
+
+function getObjectLength(car) { 
+return Object.keys(car).length; 
+} 
+
+printCarProperties(car); 
+
+deleteSecondProperty(car); 
+
+console.log('\nCar properties after deleting the second property:'); 
+printCarProperties(car); 
+
+const length = getObjectLength(car); 
+console.log(`\nLength of the car object: ${length}`);

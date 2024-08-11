@@ -1,0 +1,77 @@
+1. Setup 
+
+node -v 
+npm -v 
+
+mkdir file-system-crud 
+cd file-system-crud 
+npm init -y 
+
+npm install 
+2. CRUD Operations with Node.js fs Module : 
+
+a. Create 
+ 
+const fs = require('fs'); 
+const path = './example.txt'; 
+
+fs.writeFile(path, 'Hello, World!', (err) => { 
+if (err) throw err; 
+console.log('File created and content written!'); 
+}); 
+
+b. Read 
+ 
+const fs = require('fs'); 
+const path = './example.txt'; 
+
+fs.readFile(path, 'utf8', (err, data) => { 
+if (err) throw err; 
+console.log('File content:', data); 
+}); 
+c. Update 
+
+const fs = require('fs'); 
+const path = './example.txt'; 
+
+fs.appendFile(path, '\nNew content appended!', (err) => { 
+if (err) throw err; 
+console.log('Content appended to the file!'); 
+}); 
+
+d. Delete 
+
+
+ 
+const fs = require('fs'); 
+const path = './example.txt'; 
+
+fs.unlink(path, (err) => { 
+if (err) throw err; 
+console.log('File deleted!'); 
+});
+
+3. Putting It All Together 
+
+const fs = require('fs'); 
+const path = './example.txt'; 
+ 
+fs.writeFile(path, 'Hello, World!', (err) => { 
+if (err) throw err; 
+console.log('File created and content written!'); 
+
+fs.readFile(path, 'utf8', (err, data) => { 
+if (err) throw err; 
+console.log('File content:', data); 
+
+fs.appendFile(path, '\nNew content appended!', (err) => { 
+if (err) throw err; 
+console.log('Content appended to the file!'); 
+
+fs.unlink(path, (err) => { 
+if (err) throw err; 
+console.log('File deleted!'); 
+}); 
+}); 
+}); 
+}); 

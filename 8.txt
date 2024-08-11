@@ -1,0 +1,63 @@
+s1:
+
+
+mkdir number-app 
+cd number-app 
+npm init -y 
+npm install express 
+
+
+Step 2: Create the Server and Routes 
+
+const express = require('express'); 
+const app = express(); 
+const port = 3000; 
+
+function findPrimesLessThan100() { 
+const primes = []; 
+for (let i = 2; i < 100; i++) { 
+let isPrime = true; 
+for (let j = 2; j <= Math.sqrt(i); j++) { 
+if (i % j === 0) { 
+isPrime = false; 
+break; 
+} 
+} 
+if (isPrime) { 
+primes.push(i); 
+} 
+} 
+return primes; 
+} 
+// Function to find cubes less than 100 
+function findCubesLessThan100() { 
+
+const cubes = []; 
+for (let i = 1; i ** 3 < 100; i++) { 
+cubes.push(i ** 3); 
+} 
+return cubes; 
+} 
+
+app.get('/find_prime_100', (req, res) => { 
+const primes = findPrimesLessThan100(); 
+res.json({ primes }); 
+}); 
+
+app.get('/find_cube_100', (req, res) => { 
+const cubes = findCubesLessThan100(); 
+res.json({ cubes }); 
+}); 
+app.listen(port, () => { 
+console.log(`Server is running on http://localhost:${port}`); 
+}); 
+Step 3: Run the Server 
+
+node server.js 
+
+Step 4: Access the Routes 
+
+http://localhost:3000/find_prime_100. 
+
+
+To get cubes less than 100, go to http://localhost:3000/find_cube_100.
